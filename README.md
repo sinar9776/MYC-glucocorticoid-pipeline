@@ -1,5 +1,3 @@
-# MYC-glucocorticoid-pipeline
-"RNA-seq and analysis pipelines for MYC/glucocorticoid project"
 
 
 # MYC-Glucocorticoid Transcriptional Reprogramming Pipeline
