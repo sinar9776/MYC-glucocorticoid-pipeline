@@ -41,6 +41,7 @@ install.packages(c(
 
 ## Repository Structure
 
+```txt
 .
 ├── data/
 │   ├── metadata.txt
@@ -59,7 +60,7 @@ install.packages(c(
     │   └── 5_ORA_Categories.R
     ├── 6_scatterplots/
         └── 6_scatterplots.R
-   
+ ```  
 
 > **Note:** The `gene_counts.tsv` raw counts matrix is not tracked in this repository due to file size. 
 > It should be placed in `data/` before running the pipeline.
