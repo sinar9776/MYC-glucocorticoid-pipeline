@@ -45,5 +45,5 @@ install.packages(c(
 - `annotation.txt` — gene annotation (gene_id, symbol)
 
 ## Author
-Sina Rezaei — Research Fellow, European Institute of Oncology (IEO), Milan  
+Sina Ravanbakhsh — Research Fellow, European Institute of Oncology (IEO), Milan  
 Amati Lab | MYC & Cancer Biology
