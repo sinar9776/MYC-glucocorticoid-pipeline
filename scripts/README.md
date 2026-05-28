@@ -24,9 +24,9 @@ install.packages(c(
 ))
 ```
 
-## Pipeline Explaination
+# Pipeline Explaination
 
-# 1. Differential Expression Analysis
+## 1. Differential Expression Analysis
 
 This script performs differential gene expression analysis using DESeq2 across 
 all experimental conditions. Two glucocorticoid drugs (Budesonide and 
@@ -56,7 +56,7 @@ vehicle control.
 - Batch effect correction included in the design formula
 - LFC shrinkage method: apeglm
 
-# 2. Drug × MYC Interaction Analysis
+## 2. Drug × MYC Interaction Analysis
 
 This script identifies genes whose response to glucocorticoid treatment 
 is significantly different depending on MYC status — in other words, genes 
@@ -86,7 +86,7 @@ This analysis forms the statistical backbone for the gene categorization
 in Script 4, where interaction results are combined with the main 
 effect results to classify gene behavior.
 
-# 3. Functional Enrichment Analysis
+## 3. Functional Enrichment Analysis
 
 This script performs pathway and gene set enrichment analysis on the 
 differential expression results from Scripts 1 and 2, identifying 
@@ -119,7 +119,7 @@ more than expected by chance, using a hypergeometric test.
 - Structured NES heatmaps summarizing pathway activity across all 
   drug-timepoints simultaneously (3 heatmap layouts per drug per collection)
 
-  # 4. Gene Categorization
+## 4. Gene Categorization
 
 This script classifies differentially expressed genes into functional 
 categories based on how their response to glucocorticoid treatment 
@@ -147,7 +147,7 @@ term from Script 2. Higher timepoints take priority in the assignment.
 - Per-category gene tables with ENSEMBL IDs and gene symbols
 - Additive gene lists (up and down) per drug-timepoint
 
-# 5. Over-Representation Analysis per Gene Category
+## 5. Over-Representation Analysis per Gene Category
 
 This script runs functional enrichment analysis specifically on the 
 gene categories defined in Script 4, asking what biological processes 
@@ -179,7 +179,7 @@ Each result table includes the genes involved in each significant pathway
 (both ENSEMBL IDs and gene symbols), making it straightforward to 
 identify which specific genes are driving enrichment.
 
-# 6. LFC Scatter Plots
+## 6. LFC Scatter Plots
 
 This script produces scatter plots that visualize the relationship 
 between gene expression fold changes across pairs of contrasts, 
