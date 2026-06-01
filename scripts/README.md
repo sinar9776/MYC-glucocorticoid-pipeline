@@ -129,8 +129,8 @@ interpretable gene classes.
 
 **Categories defined:**
 
-<img width="866" height="466" alt="Picture 1" src="https://github.com/user-attachments/assets/06c8a4ff-8866-4bf7-ba50-e1cb4d6dfb4b" />
-<img width="549" height="454" alt="Screenshot 2026-06-01 at 14 23 43" src="https://github.com/user-attachments/assets/454fd2e3-cab9-40f6-b9c8-05fc34936c29" />
+<img width="549" height="454" alt="Screenshot 2026-06-01 at 14 23 43" src="https://github.com/user-attachments/assets/454fd2e3-cab9-40f6-b9c8-05fc34936c29" /> <img width="704" height="376" alt="Screenshot 2026-06-01 at 14 28 00" src="https://github.com/user-attachments/assets/61022c25-bc5a-489b-a95e-024b7c632f4d" />
+
 
 
 
