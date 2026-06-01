@@ -129,11 +129,6 @@ interpretable gene classes.
 
 **Categories defined:**
 
-<img width="275" height="227" alt="Screenshot 2026-06-01 at 14 23 43" src="https://github.com/user-attachments/assets/454fd2e3-cab9-40f6-b9c8-05fc34936c29" /> <img width="350" height="188" alt="Screenshot 2026-06-01 at 14 28 00" src="https://github.com/user-attachments/assets/61022c25-bc5a-489b-a95e-024b7c632f4d" />
-
-
-
-
 | Category | Definition |
 |----------|-----------|
 | **Enhanced** | Gene is differentially expressed in both MYC-on and MYC-off conditions, with a stronger effect when MYC is off. The interaction term confirms amplification. |
