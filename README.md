@@ -22,6 +22,8 @@ modulates the transcriptional response to glucocorticoid drugs
 | 4 | `4_categories/4_categories.R` | Gene categorization (enhanced, suppressed, independent, additive) |
 | 5 | `5_ORA_categories/5_ORA_Categories.R` | ORA per category + heatmaps |
 | 6 | `6_scatterplots/6_scatterplots.R` | LFC scatter plots per category |
+| 7 | `7_decoupleR_progenY.R` | TF activity (DoRothEA, ULM) and PROGENy pathway activity with decoupleR |
+| 8 | `8_GR_Signature.R` | Fisher's exact test of gene categories vs published GR signatures (PanCancer, Choi et al. 2024) |
 
 
 ## Requirements
@@ -29,11 +31,13 @@ modulates the transcriptional response to glucocorticoid drugs
 ```r
 BiocManager::install(c(
   "DESeq2", "apeglm", "fgsea", "clusterProfiler",
-  "msigdbr", "org.Mm.eg.db", "ComplexUpset"
+  "msigdbr", "org.Mm.eg.db", "ComplexUpset",
+  "decoupleR", "dorothea"
 ))
 
 install.packages(c(
-  "tidyverse", "pheatmap", "ggplot2", "patchwork"
+  "tidyverse", "pheatmap", "ggplot2", "patchwork",
+  "ggrepel", "readxl", "homologene"
 ))
 ```
 
@@ -57,7 +61,9 @@ install.packages(c(
     ├── 5_ORA_categories/
     │   └── 5_ORA_Categories.R
     ├── 6_scatterplots/
-        └── 6_scatterplots.R
+    │   └── 6_scatterplots.R
+    ├── 7_decoupleR_progenY.R
+    └── 8_GR_Signature.R
  ```  
 
 > **Note:** The `gene_counts.tsv` raw counts matrix is not tracked in this repository due to file size. 
@@ -68,6 +74,8 @@ install.packages(c(
 - `gene_counts.tsv` — raw gene counts matrix
 - `metadata.txt` — sample metadata (SampleID, group, drug, OHT, Batch)
 - `annotation.txt` — gene annotation (gene_id, symbol)
+- GR signature tables for step 8 (not tracked; paths set in `8_GR_Signature.R`):
+  PanCancer GR signature (`44321_2023_BFEMMM202317737_MOESM3_ESM.xlsx`) and `choi_2024.xlsx`
 
 ## Author
 Sina Ravanbakhsh — Research Fellow, European Institute of Oncology (IEO), Milan  

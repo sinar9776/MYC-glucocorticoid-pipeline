@@ -146,6 +146,29 @@ keep <- rowSums(count_mat >= 10) >= min(table(metadata$group))
 count_mat <- count_mat[keep, , drop = FALSE]
 
 #========================
+# Expressed universe (background for enrichment in scripts 3, 5, 8)
+# => tables/expressed_universe_<analysis_level>.tsv  (first column = gene_id)
+#========================
+expr_ids <- strip_version(rownames(count_mat))
+if (analysis_level == "gene") {
+  universe_df <- data.frame(gene_id = unique(expr_ids))
+} else {
+  if (!"isoform_id" %in% names(annotation2)) stop("annotation.txt needs 'isoform_id' for the isoform universe.")
+  universe_df <- annotation2 %>%
+    dplyr::filter(isoform_id %in% expr_ids) %>%
+    dplyr::distinct(gene_id, isoform_id)
+}
+if ("SYMBOL" %in% names(annotation2)) {
+  universe_df <- universe_df %>%
+    left_join(annotation2 %>% dplyr::distinct(gene_id, .keep_all = TRUE) %>% dplyr::select(gene_id, SYMBOL),
+              by = "gene_id")
+}
+write.table(universe_df,
+            file.path(res_dir, "tables", paste0("expressed_universe_", analysis_level, ".tsv")),
+            sep = "\t", quote = FALSE, row.names = FALSE)
+message("Expressed universe: ", dplyr::n_distinct(universe_df$gene_id), " genes")
+
+#========================
 # DESeq objects
 #========================
 dds1 <- DESeqDataSetFromMatrix(round(as.matrix(count_mat)), metadata, design = ~ Batch + group)

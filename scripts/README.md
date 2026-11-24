@@ -9,6 +9,8 @@
 | 4 | `4_categories/4_categories.R` | Gene categorization (enhanced, suppressed, independent, additive) |
 | 5 | `5_ORA_categories/5_ORA_Categories.R` | ORA per category + heatmaps |
 | 6 | `6_scatterplots/6_scatterplots.R` | LFC scatter plots per category |
+| 7 | `7_decoupleR_progenY.R` | TF activity (DoRothEA, ULM) and PROGENy pathway activity with decoupleR |
+| 8 | `8_GR_Signature.R` | Fisher's exact test of gene categories vs published GR signatures (PanCancer, Choi et al. 2024) |
 
 
 ## Requirements
@@ -16,11 +18,13 @@
 ```r
 BiocManager::install(c(
   "DESeq2", "apeglm", "fgsea", "clusterProfiler",
-  "msigdbr", "org.Mm.eg.db", "ComplexUpset"
+  "msigdbr", "org.Mm.eg.db", "ComplexUpset",
+  "decoupleR", "dorothea"
 ))
 
 install.packages(c(
-  "tidyverse", "pheatmap", "ggplot2", "patchwork"
+  "tidyverse", "pheatmap", "ggplot2", "patchwork",
+  "ggrepel", "readxl", "homologene"
 ))
 ```
 
@@ -49,7 +53,9 @@ vehicle control.
 - Full result tables (`tT_*.tsv`), upregulated (`up_*.tsv`) and 
   downregulated (`down_*.tsv`) gene lists for each contrast
 - Dispersion plots, PCA plots per comparison, MA plots, and volcano plots
-- Expressed gene universe file used as background for all enrichment analyses
+- Expressed gene universe (`tables/expressed_universe_gene.tsv`): all genes 
+  passing the low-count filter, used as background for enrichment in 
+  Scripts 3, 5 and 8
 
 **Key parameters:**
 - Adjusted p-value cutoff: 0.01
@@ -216,3 +222,35 @@ Shows how MYC loss shifts the drug response at the whole-transcriptome level.
 
 Individual per-drug plots and combined panels across all 
 drug-timepoints are saved as PDF and high-resolution TIFF.
+
+## 7. Transcription Factor and Pathway Activity (decoupleR)
+
+This script infers transcription factor (TF) and signaling pathway 
+activity from the expression data using decoupleR.
+
+- **TF activity:** mouse DoRothEA regulons (confidence A/B/C), scored with 
+  the univariate linear model (ULM), both per sample (VST counts) and 
+  per contrast (DESeq2 test statistics from Script 1)
+- **Pathway activity:** PROGENy pathways, scored with the multivariate linear model (MLM)
+- A focused analysis of the target genes of a selected TF (currently Nrf1), 
+  combined with their DEG significance across contrasts
+
+**Outputs:**
+- TF and pathway activity tables (scores and p-values) per sample and per contrast
+- Heatmaps of TF and PROGENy activity per drug and timepoint
+
+## 8. GR Signature Enrichment
+
+This script tests whether the gene categories from Script 4 (independent 
+and additive) are enriched for known glucocorticoid receptor (GR) target genes.
+
+**Signatures:**
+- PanCancer GR signature (human genes, converted to mouse orthologs with homologene)
+- Choi et al. 2024 GR signature (mouse ENSEMBL IDs)
+
+**Test:** Fisher's exact test per drug × timepoint × category × signature, 
+using all expressed genes as background.
+
+**Outputs:**
+- Enrichment result table (`GR_signature_enrichment_results.tsv`)
+- Dot plots per signature and a combined dot plot
