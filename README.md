@@ -22,7 +22,7 @@ modulates the transcriptional response to glucocorticoid drugs
 | 4 | `4_categories/4_categories.R` | Gene categorization (enhanced, suppressed, independent, additive) |
 | 5 | `5_ORA_categories/5_ORA_Categories.R` | ORA per category + heatmaps |
 | 6 | `6_scatterplots/6_scatterplots.R` | LFC scatter plots per category |
-| 7 | `7_decoupleR_progenY.R` | TF activity (DoRothEA, ULM) and PROGENy pathway activity with decoupleR |
+| 7 | `7_decoupleR_progenY.R` | TF activity (DoRothEA, ULM)with decoupleR and PROGENy pathway activity |
 | 8 | `8_GR_Signature.R` | Fisher's exact test of gene categories vs published GR signatures (PanCancer, Choi et al. 2024) |
 
 
